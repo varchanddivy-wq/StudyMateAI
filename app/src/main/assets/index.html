@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>StudyMate AI</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+:root{--bg:#050b18;--card:#0b1930;--blue:#35a9ff;--purple:#8b5cf6;--text:#f8fbff;--muted:#91a5c3;--border:#1d3a62}
+body{font-family:Arial,sans-serif;background:radial-gradient(circle at 80% 10%,#162d68 0,transparent 28%),radial-gradient(circle at 20% 90%,#32145c 0,transparent 25%),var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden}
+body.light{--bg:#eef5ff;--card:#fff;--text:#10213b;--muted:#53677f;--border:#bdd3ed;background:radial-gradient(circle at 80% 10%,#cde5ff 0,transparent 30%),#eef5ff}
+.app{display:flex;min-height:100vh}.sidebar{width:245px;position:fixed;left:0;top:0;height:100vh;padding:25px 16px;background:rgba(5,12,28,.95);border-right:1px solid #18345b;z-index:20}.logo{text-align:center;font-size:25px;font-weight:800;margin-bottom:35px}.logo span{color:var(--blue)}.logo small{display:block;font-size:9px;letter-spacing:3px;color:#7187a8;margin-top:5px}.nav button{width:100%;padding:14px 16px;margin:5px 0;border:1px solid transparent;border-radius:12px;background:transparent;color:#b9c9df;text-align:left;font-size:15px}.nav button.active{background:linear-gradient(135deg,#1769ff,#6d3df5);color:white}.main{margin-left:245px;width:calc(100% - 245px);padding:28px}.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:25px}.topbar h1{font-size:29px}.toggle{border:1px solid #28466e;background:#0c1c34;color:white;padding:10px 16px;border-radius:25px}.card{background:linear-gradient(145deg,rgba(18,43,76,.95),rgba(7,19,37,.97));border:1px solid var(--border);border-radius:20px;padding:23px;margin-bottom:20px;box-shadow:0 15px 40px #00000045}.light .card{background:#fff}.hero{position:relative;overflow:hidden;min-height:210px;padding:35px;border-radius:24px;margin-bottom:22px;background:radial-gradient(circle at 90% 50%,#3156c866,transparent 30%),linear-gradient(135deg,#071d3e,#101a4c 55%,#291253);border:1px solid #315786}.hero:after{content:"🤖";position:absolute;right:55px;bottom:15px;font-size:115px}.hero h2{font-size:31px;max-width:600px;margin-bottom:12px}.hero p{max-width:550px;color:#a9c1df}.hero-badge{display:inline-block;margin-top:20px;padding:8px 14px;border-radius:20px;background:#1674ff25;border:1px solid #3b9dff;color:#65c2ff;font-size:13px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.stat h2{font-size:34px;color:#49b5ff}.stat-icon{font-size:26px;margin-bottom:12px}.subjects{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.subject{padding:22px 12px;background:linear-gradient(145deg,#102b4e,#091b32);border:1px solid #214a75;border-radius:16px;text-align:center;font-weight:bold;color:#d9e9ff}.subject-icon{display:block;font-size:31px;margin-bottom:9px}textarea,input,select{width:100%;padding:15px;margin:12px 0;border-radius:12px;border:1px solid #28486f;background:#071528;color:white;font-size:16px;outline:none}textarea{min-height:140px;resize:vertical}button.primary{border:0;padding:14px 22px;border-radius:12px;color:white;font-weight:bold;font-size:16px;background:linear-gradient(135deg,#1688ff,#7046f5);width:100%}.answer,.note{margin-top:18px;padding:20px;border-radius:14px;background:linear-gradient(145deg,#102a4c,#0b1d35);border:1px solid #28619a;border-left:4px solid #39aaff;line-height:1.7;white-space:pre-wrap;color:#dcecff}.note{border-left:4px solid #8b5cf6}.note h3{color:#53b8ff;margin-bottom:10px}.quiz-question{padding:20px;margin:15px 0;border-radius:15px;background:#0a1d35;border:1px solid #244666}.option{display:block;padding:13px;margin:9px 0;border-radius:10px;background:#102640;color:#bdcde1}.option input{width:auto;margin-right:8px}.progress{height:17px;margin-top:12px;background:#142941;border-radius:20px;overflow:hidden}.progress-bar{height:100%;width:0;background:linear-gradient(90deg,#239cff,#8b5cf6);border-radius:20px;transition:.5s}.level-box,.section-title{display:flex;justify-content:space-between;align-items:center;gap:8px}.level{color:#5abaff;font-weight:bold}.hidden{display:none}.glow-line{height:2px;width:90px;margin-top:10px;background:linear-gradient(90deg,#38aaff,#8b5cf6)}
+@media(max-width:850px){.sidebar{width:70px;padding:18px 7px}.logo{font-size:0;margin-bottom:25px}.logo span{font-size:20px}.logo small{display:none}.nav button{text-align:center;padding:14px 5px;font-size:0}.nav button::first-letter{font-size:20px}.main{margin-left:70px;width:calc(100% - 70px);padding:16px}.grid{grid-template-columns:1fr}.subjects{grid-template-columns:repeat(2,1fr)}.hero{min-height:250px;padding:25px}.hero:after{right:20px;font-size:80px}}
+@media(max-width:500px){.topbar h1{font-size:22px}.hero{min-height:220px;padding:20px}.hero h2{font-size:22px}.hero p{font-size:14px;max-width:65%}.hero:after{font-size:60px;right:12px}.card{padding:16px}}
+@media(max-width:360px){.sidebar{width:56px}.main{margin-left:56px;width:calc(100% - 56px);padding:12px}.subjects{grid-template-columns:1fr}.hero:after{display:none}}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar"><div class="logo">Study<span>Mate</span> AI<small>LEARN • GROW • ACHIEVE</small></div>
+<div class="nav">
+<button class="active" onclick="showPage('home',this)">🏠 Home</button>
+<button onclick="showPage('ask',this)">🤖 Ask AI</button>
+<button onclick="showPage('notes',this)">📝 Notes</button>
+<button onclick="showPage('quiz',this)">🎯 Quiz</button>
+<button onclick="showPage('progress',this)">📊 Progress</button>
+</div></aside>
+<main class="main"><div class="topbar"><h1 id="pageTitle">StudyMate AI</h1><button class="toggle" onclick="toggleDark()" id="themeBtn">☀️</button></div>
+
+<section id="home" class="page"><div class="hero"><h2>Your AI Study Assistant for a Smarter Tomorrow 🚀</h2><p>Learn faster, understand difficult topics, create smart notes and test your knowledge.</p><div class="hero-badge">✨ SMARTER LEARNING STARTS HERE</div></div>
+<div class="grid"><div class="card stat"><div class="stat-icon">⚡</div><h2 id="xp">0</h2><p>XP Points</p></div><div class="card stat"><div class="stat-icon">🎯</div><h2 id="quizCount">0</h2><p>Quizzes Completed</p></div><div class="card stat"><div class="stat-icon">📝</div><h2 id="noteCount">0</h2><p>Notes Created</p></div></div>
+<div class="card"><div class="section-title"><div><h2>Choose a Subject</h2><div class="glow-line"></div></div><span>Start learning →</span></div><div class="subjects">
+<div class="subject" onclick="subjectAsk('Mathematics')"><span class="subject-icon">📐</span>Mathematics</div>
+<div class="subject" onclick="subjectAsk('Science')"><span class="subject-icon">🔬</span>Science</div>
+<div class="subject" onclick="subjectAsk('English')"><span class="subject-icon">📚</span>English</div>
+<div class="subject" onclick="subjectAsk('Computer Science')"><span class="subject-icon">💻</span>Computer Science</div>
+</div></div></section>
+
+<section id="ask" class="page hidden"><div class="card"><div class="section-title"><div><h2>🤖 Ask StudyMate AI</h2><div class="glow-line"></div></div><span>AI Assistant</span></div><p>Ask any study question and get a simple explanation.</p><textarea id="question" placeholder="Example: Explain photosynthesis in simple words..."></textarea><button class="primary" onclick="askAI()">✨ Ask AI</button><div id="answer"></div></div></section>
+
+<section id="notes" class="page hidden"><div class="card"><div class="section-title"><div><h2>📝 AI Notes Generator</h2><div class="glow-line"></div></div><span>Smart Notes</span></div><p>Turn any topic into easy revision notes.</p><input id="noteTopic" placeholder="Example: Newton's Laws"><button class="primary" onclick="generateNotes()">📝 Generate Notes</button><div id="notesResult"></div></div></section>
+
+<section id="quiz" class="page hidden"><div class="card"><div class="section-title"><div><h2>🎯 Study Quiz</h2><div class="glow-line"></div></div><span>Test Yourself</span></div><p>Choose a subject and test your knowledge.</p><select id="quizSubject"><option>Mathematics</option><option>Science</option><option>English</option><option>Computer Science</option><option>General Knowledge</option></select><button class="primary" onclick="startQuiz()">🚀 Start Quiz</button><div id="quizArea"></div></div></section>
+
+<section id="progress" class="page hidden"><div class="card"><div class="section-title"><div><h2>📊 Your Progress</h2><div class="glow-line"></div></div><span>Keep growing 🚀</span></div><div class="level-box"><p>XP Progress</p><span id="levelText" class="level">Level 1</span></div><div class="progress"><div id="progressBar" class="progress-bar"></div></div><br><h3>Keep studying! 🚀</h3><br><p>The more you learn, the more XP you earn.</p></div></section>
+</main></div>
+
+<script>
+const API_BASE_URL = "https://YOUR-BACKEND-DOMAIN.example.com";
+
+let xp=Number(localStorage.getItem("xp"))||0,quizCount=Number(localStorage.getItem("quizCount"))||0,noteCount=Number(localStorage.getItem("noteCount"))||0;
+function showPage(page,button){document.querySelectorAll(".page").forEach(p=>p.classList.add("hidden"));document.getElementById(page).classList.remove("hidden");let titles={home:"StudyMate AI",ask:"Ask AI",notes:"AI Notes",quiz:"Quiz",progress:"Progress"};document.getElementById("pageTitle").innerText=titles[page];document.querySelectorAll(".nav button").forEach(b=>b.classList.remove("active"));if(button)button.classList.add("active");scrollTo(0,0)}
+function toggleDark(){document.body.classList.toggle("light");let light=document.body.classList.contains("light");document.getElementById("themeBtn").innerText=light?"🌙":"☀️";localStorage.setItem("theme",light?"light":"dark")}
+if(localStorage.getItem("theme")==="light"){document.body.classList.add("light");document.getElementById("themeBtn").innerText="🌙"}
+function addXP(p){xp+=p;localStorage.setItem("xp",xp);updateStats()}
+function updateStats(){document.getElementById("xp").innerText=xp;document.getElementById("quizCount").innerText=quizCount;document.getElementById("noteCount").innerText=noteCount;let level=Math.floor(xp/100)+1;document.getElementById("levelText").innerText="Level "+level+" • "+xp+" XP";document.getElementById("progressBar").style.width=(xp%100)+"%"}
+function subjectAsk(s){showPage("ask");document.getElementById("question").value="Teach me "+s+" from beginner level with simple examples.";askAI()}
+async function askAI(){
+  const q=document.getElementById("question").value.trim();
+  if(!q){alert("Please enter a question.");return}
+  const o=document.getElementById("answer");
+  o.innerHTML='<div class="answer">🤖 StudyMate AI is thinking...</div>';
+  try{
+    const r=await fetch(API_BASE_URL+"/api/ask",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({question:q})});
+    const data=await r.json();
+    if(!r.ok) throw new Error(data.error||"Request failed");
+    o.innerHTML='<div class="answer">'+escapeHTML(data.answer||"No answer returned.")+'</div>';
+    addXP(10);
+  }catch(e){
+    o.innerHTML='<div class="answer">⚠️ Unable to reach the AI server. Check your backend URL and internet connection.</div>';
+    console.error(e);
+  }
+}
+function getAnswer(q){let t=q.toLowerCase();if(t.includes("photosynthesis"))return`Photosynthesis is the process by which green plants make their own food.\n\nPlants use sunlight, carbon dioxide, water and chlorophyll.\n\nThe plant produces glucose and releases oxygen.\n\nCarbon dioxide + Water + Sunlight → Glucose + Oxygen`;if(t.includes("gravity"))return`Gravity is the force that attracts objects toward each other.\n\nOn Earth, gravity pulls objects toward the ground.\n\nExample: When you drop a ball, Earth's gravity pulls it downward.`;if(t.includes("newton"))return`Newton's three laws of motion:\n\n1. Inertia: an object remains at rest or in motion unless a force acts on it.\n2. Acceleration: Force = Mass × Acceleration.\n3. Action and Reaction: every action has an equal and opposite reaction.\n\nExample: A rocket moves upward because gases are pushed downward.`;if(t.includes("computer"))return`A computer is an electronic device that accepts data, processes it and produces information.\n\nMain parts:\n• CPU – processes instructions\n• RAM – temporary memory\n• Storage – saves data\n• Input devices – keyboard and mouse\n• Output devices – monitor and printer`;if(t.includes("html"))return`HTML stands for HyperText Markup Language.\n\nIt is used to create the structure of web pages.\n\nCommon tags include <h1>, <p>, <button>, <img> and <a>.\n\nHTML + CSS + JavaScript can create interactive websites.`;if(/^[0-9+\\-*/().\\s×÷]+$/.test(q.replace(/what is|calculate|solve/gi,"").trim()))return solveMath(q);if(t.includes("english"))return`English study tips:\n\n1. Read regularly.\n2. Learn new vocabulary.\n3. Practice grammar.\n4. Write short paragraphs.\n5. Speak English regularly.\n\nTry learning five new words each day.`;return`Here's a simple way to study this topic:\n\n1. Understand the basic definition.\n2. Break the topic into smaller concepts.\n3. Learn one concept at a time.\n4. Use real-life examples.\n5. Revise using short notes.\n6. Test yourself with questions.\n\nYour question was: "${q}"`}
+function solveMath(q){let e=q.replace(/what is|calculate|solve/gi,"").replace(/=/g,"").replace(/×/g,"*").replace(/÷/g,"/").trim();if(/^[0-9+\\-*/().\\s]+$/.test(e)){try{return e+" = "+Function('"use strict";return ('+e+')')()}catch(_){}}return"I can solve basic calculations. Example: 25 × 4 + 10"}
+async function generateNotes(){
+  const topic=document.getElementById("noteTopic").value.trim();
+  if(!topic){alert("Enter a topic.");return}
+  const r=document.getElementById("notesResult");
+  r.innerHTML='<div class="note">📝 Creating smart notes...</div>';
+  try{
+    const res=await fetch(API_BASE_URL+"/api/notes",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({topic})});
+    const data=await res.json();
+    if(!res.ok) throw new Error(data.error||"Request failed");
+    r.innerHTML='<div class="note"><h3>📚 '+escapeHTML(topic)+'</h3><p><b>AI Notes:</b></p><p>'+escapeHTML(data.notes||"No notes returned.")+'</p></div>';
+    noteCount++;localStorage.setItem("noteCount",noteCount);addXP(15);
+  }catch(e){
+    r.innerHTML='<div class="note">⚠️ Unable to reach the AI server. Check your backend URL and internet connection.</div>';
+    console.error(e);
+  }
+}
+function getNotes(topic){let t=topic.toLowerCase();if(t.includes("newton"))return`Newton's Laws of Motion explain how objects move when forces act on them.\n\n1. First Law – Inertia\n2. Second Law – Force = Mass × Acceleration\n3. Third Law – Every action has an equal and opposite reaction.\n\nExample: A rocket moves upward because gases are pushed downward.`;if(t.includes("photosynthesis"))return`Photosynthesis is how green plants produce food using sunlight, water, carbon dioxide and chlorophyll. The products are glucose and oxygen.`;if(t.includes("computer"))return`A computer processes data. Main components include CPU, RAM, storage, input devices and output devices.\n\nBasic cycle: Input → Processing → Output → Storage`;if(t.includes("html"))return`HTML provides the structure of a web page. Common tags include headings, paragraphs, links, images, buttons and div containers.`;return`Study notes for "${topic}":\n\n• Definition: understand what the topic means.\n• Key concepts: break it into smaller ideas.\n• Examples: connect it to real-life situations.\n• Practice: solve related questions.\n• Revision: review regularly.`}
+const quizData={Mathematics:[["What is 12 × 5?",["50","60","70","80"],1],["What is the square root of 81?",["7","8","9","10"],2],["What is 100 ÷ 4?",["20","25","30","40"],1]],Science:[["Which gas do plants use during photosynthesis?",["Oxygen","Nitrogen","Carbon dioxide","Hydrogen"],2],["What force pulls objects toward Earth?",["Friction","Gravity","Magnetism","Electricity"],1],["What is H₂O?",["Salt","Oxygen","Water","Hydrogen"],2]],English:[["Which word is a noun?",["Run","Beautiful","Teacher","Quickly"],2],["Opposite of hot?",["Warm","Cold","Large","Fast"],1],["Correct sentence?",["She go to school.","She going school.","She goes to school.","She gone to school."],2]],"Computer Science":[["What does CPU stand for?",["Central Processing Unit","Computer Personal Unit","Central Program Utility","Computer Processing User"],0],["Which language structures web pages?",["Python","HTML","SQL","Java"],1],["Which is temporary memory?",["Hard disk","RAM","SSD","DVD"],1]],"General Knowledge":[["Capital of India?",["Mumbai","Delhi","Kolkata","Chennai"],1],["Days in a week?",["5","6","7","8"],2],["Which planet is the Red Planet?",["Earth","Mars","Jupiter","Venus"],1]]};
+function startQuiz(){let s=document.getElementById("quizSubject").value,d=quizData[s],a=document.getElementById("quizArea");a.innerHTML="";d.forEach((x,i)=>{a.innerHTML+=`<div class="quiz-question"><b>${i+1}. ${escapeHTML(x[0])}</b>${x[1].map((o,j)=>`<label class="option"><input type="radio" name="q${i}" value="${j}">${escapeHTML(o)}</label>`).join("")}</div>`});a.innerHTML+=`<button class="primary" onclick="submitQuiz('${s}')">✅ Submit Quiz</button><div id="quizResult"></div>`}
+function submitQuiz(s){let d=quizData[s],score=0;d.forEach((x,i)=>{let v=document.querySelector('input[name="q'+i+'"]:checked');if(v&&Number(v.value)===x[2])score++});let p=Math.round(score/d.length*100);let m=p===100?"Perfect score! 🏆":p>=70?"Great job! 🚀":p>=40?"Good attempt! Keep learning. 📚":"Keep practicing! 💪";document.getElementById("quizResult").innerHTML='<div class="answer">🎯 Score: '+score+'/'+d.length+'<br>📊 Percentage: '+p+'%<br><br>'+m+'</div>';quizCount++;localStorage.setItem("quizCount",quizCount);addXP(score*20)}
+function escapeHTML(v){return String(v).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#039;")}
+updateStats();
+</script>
+</body>
+</html>
