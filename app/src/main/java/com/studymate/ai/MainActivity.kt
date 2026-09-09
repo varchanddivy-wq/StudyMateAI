@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.app.Activity
 import android.graphics.Color
 import android.os.Bundle
-import android.view.View
+import android.view.MotionEvent
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
@@ -37,14 +37,20 @@ class MainActivity : Activity() {
 
         webView.isFocusable = true
         webView.isFocusableInTouchMode = true
-        webView.overScrollMode = View.OVER_SCROLL_NEVER
+        webView.requestFocus()
+
+        webView.setOnTouchListener { view, event ->
+            if (event.action == MotionEvent.ACTION_DOWN) {
+                view.parent?.requestDisallowInterceptTouchEvent(true)
+            }
+            false
+        }
 
         setContentView(webView)
-
         webView.loadUrl("file:///android_asset/index.html")
     }
 
-    @Suppress("DEPRECATION")
+    @Deprecated("Deprecated in Android API 33")
     override fun onBackPressed() {
         if (webView.canGoBack()) {
             webView.goBack()
